@@ -1,20 +1,31 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createServer } from 'miragejs'
+import { createServer, Model } from 'miragejs'
 import { App } from "./App";
 
 createServer({
+    models: {
+        transaction: Model,
+    },
+
+    seeds(server) {
+        server.db.loadData({
+            transactions: {
+                id: 1,
+                title: 'Transactions 1',
+                amount: 465,
+                type: 'deposito',
+                category: 'Food',
+                createdAt: new Date()
+            }
+        })
+    },
+
     routes() {
         this.namespace = 'api';
 
         this.get('/transactions', () => {
-            return {
-                id: 1,
-                title: 'Transactions 1',
-                amount: 465,
-                
-
-            }
+            return this.schema.all('transaction');
         })
     }
 })
