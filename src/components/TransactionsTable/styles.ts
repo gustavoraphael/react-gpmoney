@@ -27,7 +27,7 @@ export const Container = styled.header`
                 color: var(--text-title)
             }
 
-            &.withdrawl {
+            &.withdraw {
                 color: var(--red)
             }
 
